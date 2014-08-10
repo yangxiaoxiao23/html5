@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script>
+
+        // eval 可以解析任何字符串变成JS
+
+        // parse 只能解析JSON形式的字符串变成JS
+
+        var str = "function show(){alert(123)}";
+        eval(str);
+        //JSON.parse(str); //报错
+
+        show();
+
+        //要求的是严格的Json形式(属性需要加上引号)
+        var str2 = '{"name":"hello"}';
+        JSON.parse(str2); //报错
+
+
+        //把json转为string
+
+        var json = {name: 'hello'}
+
+        var str = JSON.stringify(json)
+
+    </script>
+
+</head>
+
+<body>
+
+</body>
+</html>
