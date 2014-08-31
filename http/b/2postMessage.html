@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+
+    <script>
+
+        window.onload = function(){
+
+            /**
+             * 当窗口接收到通过postMessage发送过来的数据的时候触发
+             */
+             window.addEventListener('message', function(ev){
+                //message事件对象下保存了发送过来的内容
+                 //ev.data: 发送过来的数据
+                 //ev.origin: 发送源的域
+                 alert("收到的内容:" + ev.data);
+             })
+        }
+
+    </script>
+
+    <script src="recaptcha_ajax.js"></script>
+</head>
+<body>
+这是b.com下的2postMessage.html
+
+
+<img id="img1" style="width: 500px;height: 500px;border: 1px solid red;">
+
+</body>
+</html>

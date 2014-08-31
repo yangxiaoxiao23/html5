@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="../js/jquery-1.11.1.js"></script>
+
+    <style>
+
+        body {background: black;color:#fff;}
+        body:after {clear: both;display: block;content:'';}
+        #c1 {background: #fff;}
+        #c1 span {color: #f60;}
+    </style>
+
+
+    <script type="text/javascript">
+        $(function(){
+            var oC = $('#c1');
+
+            var oCan = oC[0].getContext('2d'); //获取2D环境
+
+            oCan.fillRect(50, 50, 100, 100);
+            oCan.strokeRect(200.5, 50.5, 50, 50);
+
+
+            oCan.fillStyle = 'green';
+
+            oCan.save();
+            oCan.fillStyle = 'red';
+            oCan.fillRect(50, 150, 100, 100);
+            oCan.restore();
+
+
+            oCan.fillRect(350, 150, 100, 100);
+
+            oCan.lineWidth = 10;
+            oCan.lineJoin = 'round';
+            oCan.strokeRect(260.5, 110.5, 100, 100);
+
+            oCan.strokeStyle = 'blue';
+            oCan.lineWidth = 10;
+
+            oCan.lineJoin = 'bevel';
+            oCan.strokeRect(50.5, 270.5, 100, 100);
+
+
+            oCan.strokeStyle = '#f60';
+            oCan.lineWidth = 1;
+
+            oCan.beginPath();
+            oCan.moveTo(20, 300);
+            oCan.lineTo(100, 500);
+            oCan.lineTo(200, 400);
+            oCan.closePath(); //闭合
+            oCan.stroke(); //划线
+
+            oCan.beginPath();
+            oCan.moveTo(20, 550);
+            oCan.lineTo(100, 750);
+            oCan.lineTo(200, 650);
+            oCan.closePath(); //闭合
+            oCan.fill(); //填充
+
+            //绘制方块
+            oCan.beginPath();
+            oCan.rect(220, 240, 200, 200);
+            oCan.closePath(); //闭合
+            oCan.fill(); //填充
+
+            //清空
+            oCan.clearRect(220,240,100,100);
+
+
+            oCan.lineWidth = 20;
+            oCan.lineCap = 'square';
+            oCan.beginPath();
+            oCan.moveTo(600, 50);
+            oCan.lineTo(700, 750);
+            oCan.stroke();
+
+        });
+    </script>
+</head>
+<body>
+
+<div style="float:left;width:700px;">
+<pre>
+    canvas 默认宽:300 高:150
+
+    //绘制环境
+    目前支持2D,3D支持有些浏览器支持webgl
+
+    getContext('2d')
+
+    //绘制方块
+    fillRect(l,t,w,h): 默认颜色是黑色
+
+    strokeRect(l, t, w, h): 带边框的方块
+        -- 默认一像素黑色边框,显示出来的不一样原因
+
+    //设置绘图
+        fillStyle 填充颜色
+        strokeStyle 边框颜色
+        lineWidth 边框大小
+
+    //边界绘制
+        lineJoin: 边界连接点样式
+            -miter默认 round(圆角) bevel(斜角)
+
+        lineCap: 端点样式
+            -butt 默认 round圆角 square高度多出为宽一半的值
+
+    //绘图路径
+
+        beginPath: 开始绘图路径
+        closePath: 结束绘制路径
+        moveTo: 移动到绘制的新目标点
+        lineTo: 新的目标点
+
+    //绘制路径2
+        stroke: 画线 默认黑色
+        fill: 填充,默认黑色
+        rect: 矩形区域
+        clearRect: 删除一个画布的矩形区域
+        save: 保存路径
+        restore: 恢复路径 与 save配合使用  大概意思为:讲他们之间的代码封闭起来,
+                 里面设置的样式不影响外面的,类似为js中作用域
+
+
+</pre>
+</div>
+
+<div style="float:left;">
+    <canvas id="c1" width="800" height="800">
+        <span>不支持canvas浏览器</span>
+    </canvas>
+</div>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="../js/jquery-1.11.1.js"></script>
+    <script src="../js/jCanvaScript.1.5.18.js"></script>
+    <style>
+
+        body {background: black;color:#fff;}
+        body:after {clear: both;display: block;content:'';}
+        #c1 {background: #fff;}
+        #c1 span {color: #f60;}
+    </style>
+
+
+    <script>
+        window.onload = function(){
+
+            var oC = document.getElementById('c1');
+            var oGC = oC.getContext("2d");
+
+            var oStartBtn = document.getElementById('start');
+            var oEndBtn = document.getElementById('end');
+
+
+            oStartBtn.onclick = function(){
+                start_4('c1');
+            };
+
+            oEndBtn.onclick = function(){
+                stop_4('c1');
+            };
+
+            onload_4('c1');
+
+            function start_4(idCanvas)
+            {
+                jc('#myCircle_4')
+                        .animate({x:175,radius:25},2000,{type:'inOut', fn:'elastic', n:1.5});
+            }
+            function stop_4(idCanvas)
+            {
+                jc.clear(idCanvas);
+                onload_4(idCanvas);
+            }
+            function onload_4(idCanvas)
+            {
+                jc.start(idCanvas,true);
+                jc.circle(100,120,50,'#ff0000',1)
+                        .id('myCircle_4');
+            }
+
+        }
+
+    </script>
+
+</head>
+<body>
+
+<div style="float:left;width:700px;">
+<pre>
+    canvas 默认宽:300 高:150
+    //像素
+    getImageData(x, y, w, h) 获取图像信息
+
+    putImageData(图像, x, y) 设置新图像
+
+        属性: width 一行的像素个数
+             height 一列的像素个数
+             data 一个数组,包含每个像素的rgba四个值,注意每个值都在0~255之间
+
+
+
+</pre>
+</div>
+
+<input id="start" value="开始" type="button"/>
+<input id="end" value="结束" type="button"/>
+
+
+<div style="float:left;">
+    <canvas id="c1" width="800" height="1800">
+
+    </canvas>
+</div>
+</body>
+</html>

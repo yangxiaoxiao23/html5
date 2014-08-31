@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="../js/jquery-1.11.1.js"></script>
+
+
+    <script>
+        $(function(){
+            var oDivFile = $('#file');
+            oDivFile.on('dragover', function (ev) {
+                ev.preventDefault();
+            });
+
+            oDivFile.on('drop', function (ev) {
+                $(this).css('background', 'red');
+                ev.preventDefault();
+                ev = ev.originalEvent || window.event;
+                var fs = ev.dataTransfer.files;
+
+                // alert(fs[0].type); //文件类型
+
+                var fr = new FileReader();
+                fr.readAsDataURL(fs[0]);
+                fr.onload = function(){
+                    alert(this.result);
+                }
+            });
+        });
+
+
+    </script>
+
+</head>
+<body>
+<div id="file" style="width: 1000px;height:300px;border: 1px solid #ccc;">
+    拖拽外部文件
+
+</div>
+</body>
+</html>

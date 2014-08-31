@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script>
+        /*
+         *
+         *  通过js访问被包含的iframe元素
+         *
+         * */
+
+        window.onload = function () {
+            var oBtn = document.getElementById('input1');
+            var oIframe = document.getElementById('myframe');
+
+
+
+            /**
+            *  postMessage: 可以通过这个方法给另外的一个窗口发送信息
+            *
+            *  接收消息的窗口的window对象的postMessage()
+            *
+            *  第一个参数:发送的数据
+            *  第二个参数:接收数据的域名(一定要带上协议)
+            *
+            * */
+
+            oBtn.onclick = function(){
+                //如果要操作一个iframe里面的dom元素,首先要获取iframe页面的window
+
+                var ifrWin = oIframe.contentWindow ; //获取被包含的iframe页面的window对象
+
+                //当本页面和被包含的页面不在同一个域名下的时候,这样的操作就会有跨域操作的安全限制
+                //ifrWin.document.body.style.background = 'red';
+
+
+                ifrWin.postMessage('abc', 'http://www.b.com')
+            }
+        }
+
+    </script>
+
+</head>
+<body>
+
+<input id="input1" type="button" value="点击我改变3-iframe.html的背景"/>
+<iframe id="myframe" src="http://www.b.com/2postMessage.html">
+
+</iframe>
+
+</body>
+</html>

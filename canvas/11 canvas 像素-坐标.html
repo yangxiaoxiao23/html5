@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="../js/jquery-1.11.1.js"></script>
+
+    <style>
+
+        body {background: black;color:#fff;}
+        body:after {clear: both;display: block;content:'';}
+        #c1 {background: #fff;}
+        #c1 span {color: #f60;}
+    </style>
+
+
+    <script>
+        window.onload = function(){
+
+            var oC = document.getElementById('c1');
+            var oGC = oC.getContext("2d");
+
+            oGC.fillRect(0, 0, 100, 100);
+            var oImg = oGC.getImageData(0, 0, 100, 100);
+
+            //alert(getXY(oImg, 3, 5));
+
+            for(var i=0;i<oImg.width;i++){
+                setXY(oImg, i, 5, [255, 255, 255]);
+            }
+
+            oGC.putImageData(oImg, 100, 100);
+
+            function getXY(obj, x, y) {
+                var w = obj.width;
+                var h = obj.height;
+                var d = obj.data;
+
+                var color = [];
+                color[0] = d[4*(y*w+x)];
+                color[1] = d[4*(y*w+x) + 1];
+                color[2] = d[4*(y*w+x) + 2];
+                color[3] = d[4*(y*w+x) + 3];
+                return color;
+            }
+
+            function setXY(obj, x, y, color){
+                var w = obj.width;
+                var h = obj.height;
+                var d = obj.data;
+                d[4*(y*w+x)] = color[0];
+                d[4*(y*w+x) + 1] = color[1];
+                d[4*(y*w+x) + 2] = color[2];
+                d[4*(y*w+x) + 3] = color[3];
+                return obj;
+            }
+        }
+
+    </script>
+
+</head>
+<body>
+
+<div style="float:left;width:700px;">
+<pre>
+    canvas 默认宽:300 高:150
+    //像素
+    getImageData(x, y, w, h) 获取图像信息
+
+    putImageData(图像, x, y) 设置新图像
+
+        属性: width 一行的像素个数
+             height 一列的像素个数
+             data 一个数组,包含每个像素的rgba四个值,注意每个值都在0~255之间
+
+
+
+</pre>
+</div>
+
+<div style="float:left;">
+    <canvas id="c1" width="800" height="800">
+
+    </canvas>
+</div>
+
+</body>
+</html>

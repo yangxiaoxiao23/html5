@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="../js/jquery-1.11.1.js"></script>
+    <script src="../js/jCanvaScript.1.5.18.js"></script>
+    <style>
+
+        body {background: black;color:#fff;}
+        body:after {clear: both;display: block;content:'';}
+        #c1 {background: #fff;}
+        #c1 span {color: #f60;}
+    </style>
+
+
+    <script>
+        window.onload = function(){
+
+            var oC = document.getElementById('c1');
+            var oGC = oC.getContext("2d");
+
+            jc.start('c1', true); //第二个参数代表重绘
+            jc.rect(100, 100, 50, 50, '#ff0000',1).click(function(){
+                alert('rect');
+            });
+
+            jc.circle(200, 200, 50, '#ff000', 1).draggable().click(function(){
+                alert(11);
+            });
+
+            jc.start('c1');
+
+        }
+
+    </script>
+
+</head>
+<body>
+
+<div style="float:left;width:700px;">
+<pre>
+    canvas 默认宽:300 高:150
+    //像素
+    getImageData(x, y, w, h) 获取图像信息
+
+    putImageData(图像, x, y) 设置新图像
+
+        属性: width 一行的像素个数
+             height 一列的像素个数
+             data 一个数组,包含每个像素的rgba四个值,注意每个值都在0~255之间
+
+
+
+</pre>
+</div>
+
+<div style="float:left;">
+    <canvas id="c1" width="800" height="1800">
+
+    </canvas>
+</div>
+</body>
+</html>

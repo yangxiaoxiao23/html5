@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script>
+        window.onload = function(){
+            var oBtn = document.getElementById('input1');
+            var newWindow = null;
+            oBtn.onclick = function(){
+                newWindow = window.open('5windowopen.html', '_blank');
+            }
+
+            var oBtn2 = document.getElementById('input2');
+            oBtn2.onclick = function(){
+                newWindow.document.body.style.background = 'red';
+            }
+        }
+    </script>
+
+</head>
+<body>
+
+<input id="input1" value="点击我开启一个新窗口打开5windowopen.html" type="button"/>
+
+<input id="input2" value="点击我改变5windowopen.html的背景颜色" type="button"/>
+
+</body>
+</html>

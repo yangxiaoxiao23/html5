@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="../js/jquery-1.11.1.js"></script>
+    <style>
+
+        li {list-style: none;width:100px;height:20px;background: yellow;margin:10px;}
+        #div1 {width:100px;height:100px;background:red;}
+
+    </style>
+
+
+    <script>
+
+        $(function(){
+            var aLi = $('li');
+            aLi.each(function(){
+                //开始拖拽
+                $(this).on('dragstart', function(){
+                    $(this).css('background', 'red');
+                });
+
+                $(this).on('drag', function(){
+                    $(this).css('background', 'rgb(' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ')');
+                });
+
+
+                //拖拽结束
+                $(this).on('dragend', function(){
+                    $(this).css('background', 'yellow');
+                });
+            });
+
+            var oDiv = $('#div1');
+
+            oDiv.on('dragenter', function(){
+                $(this).css('background', 'green');
+            });
+
+            oDiv.on('drop', function(){
+
+            });
+
+            oDiv.on('dragover', function(ev){
+                //要想触发drop时间,就必须在dragover当中阻止默认时间
+                ev.preventDefault();
+            });
+        });
+    </script>
+</head>
+<body>
+
+<pre>
+    拖拽元素事件：
+        dragstart: 拖拽开始
+        drag: 拖拽前-拖拽结束 连续触发
+        dragend: 拖拽结束
+
+    目标元素事件:
+        dragenter: 进入目标区域触发,相当于mouseover
+        dragover: 进入目标,离开目标之间,连续触发
+        dragleave: 离开目标元素触发,相当于mouseout
+        drop: 在目标元素上释放鼠标触发
+
+
+
+    拖放事件:
+        事件执行顺序:
+
+        drop不触发的时候
+            -> dragstart > drag > dragenter > dragover> draglever > dragend
+
+        drop触发:
+            >dragstart > drag > dragenter > dragover > drop > dragend
+
+    解决firefox问题:
+        必须设置dataTransfer对象的setData方法才可以拖拽除图片外的其他标签
+
+    dataTransfer对象:
+        setData: 设置数据key和value (必须是字符串)
+        getData: 获取数据,根据key值,获取对应的value值
+</pre>
+
+<ul>
+    <li draggable="true">1111</li>
+    <li draggable="true">2222</li>
+    <li draggable="true">3333</li>
+</ul>
+
+<div id="div1">
+
+
+</div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="../js/jquery-1.11.1.js"></script>
+
+    <style>
+
+        body {background: black;color:#fff;}
+        body:after {clear: both;display: block;content:'';}
+        #c1 {background: #fff;}
+        #c1 span {color: #f60;}
+    </style>
+
+
+    <script type="text/javascript">
+        $(function(){
+
+            var oLeftBtn = $('#leftBtn');
+            var oRightBtn = $('#rightBtn');
+            var img = $('#img1');
+
+            var oImg = new Image();
+            oImg.onload = function(){
+                draw(this);
+            }
+            oImg.src = '111.jpg';//img.attr('src');
+
+            function draw(obj){
+
+                var html = '<canvas id="c1" width="' + obj.width + '" height="' + obj.height + '"></canvas>';
+                $('#div1').html(html);
+                var oCanvas = $('#c1')[0].getContext('2d');
+                oCanvas.drawImage(obj, 0, 0);
+            }
+
+        });
+    </script>
+</head>
+<body>
+
+<div style="float:left;width:700px;">
+<pre>
+    canvas 默认宽:300 高:150
+
+    等图片加载完成后,在执行canvas操作
+        --图片预加载: 在onload中调用方法
+
+    drawImage(oImage, x, y, w, h) oImage当前图片 x,y坐标  w,h宽高
+</pre>
+</div>
+
+<div style="float:left;">
+
+    <button id="leftBtn">←</button>
+    <button id="rightBtn">→</button>
+
+    <div id="div1">
+        <img id="img1" src="111.jpg">
+    </div>
+</div>
+</body>
+</html>

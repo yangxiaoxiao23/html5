@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript">
+        window.onload = function(){
+            var oBtn = document.getElementById('input1');
+            oBtn.onclick = function(){
+
+                /**
+                *  parent-> window 如果当前页面是顶级,没有被其他页面包含,
+                 *  那么parent就是当前页面的window对象,那么如果被包含了,则parent就是包含
+                 *  当前页面的父级页面的window对象
+                *
+                * */
+
+                parent.document.body.style.background = 'blue';
+
+                /**
+                 * window: 当前窗口
+                 * parent:    如果当前页面是顶级,没有被其他页面包含,
+                 *            那么parent就是当前页面的window对象,那么如果被包含了,则parent就是包含
+                 *          当前页面的父级页面的window对象
+                 * top: 最顶层的窗口window, 如A中包含B,B中包含C,C
+                 */
+             }
+        }
+    </script>
+</head>
+<body>
+
+这是a域名下的ifrmae
+
+<input id="input1" value="点我改变父级背景" type="button"/>
+
+</body>
+</html>

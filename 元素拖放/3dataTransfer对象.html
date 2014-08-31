@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="../js/jquery-1.11.1.js"></script>
+    <style>
+
+        li {list-style: none;width:100px;height:20px;background: yellow;margin:10px;}
+        #div1 {width:100px;height:100px;background:red;}
+
+    </style>
+
+
+    <script>
+
+        $(function(){
+            var aLi = $('li');
+            aLi.each(function(){
+                //开始拖拽
+                $(this).on('dragstart', function(ev){
+                    $(this).css('background', 'red');
+                    ev = ev.originalEvent || window.event;
+                    var transfer = ev.dataTransfer;
+                    transfer.effectAllowed = 'copy'
+                });
+
+                $(this).on('drag', function(){
+                    $(this).css('background', 'rgb(' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ')');
+                });
+
+
+                //拖拽结束
+                $(this).on('dragend', function(){
+                    $(this).css('background', 'yellow');
+                });
+            });
+
+            var oDiv = $('#div1');
+
+            oDiv.on('dragenter', function(){
+                $(this).css('background', 'green');
+            });
+
+            oDiv.on('drop', function(){
+
+            });
+
+            oDiv.on('dragover', function(ev){
+                //要想触发drop时间,就必须在dragover当中阻止默认时间
+                ev.preventDefault();
+            });
+        });
+
+
+        $(function(){
+            var oDivFile = $('#file');
+            oDivFile.on('dragover', function (ev) {
+                ev.preventDefault();
+            });
+
+            oDivFile.on('drop', function (ev) {
+                $(this).css('background', 'red');
+                ev.preventDefault();
+                ev = ev.originalEvent || window.event;
+                var fs = ev.dataTransfer.files;
+
+                alert(fs[0].type); //文件类型
+            });
+        });
+    </script>
+</head>
+<body>
+
+<pre>
+    dataTransfer对象
+        effectAllowed: 鼠标的样式
+            none, copy, copylink, copyMove, link, linkMove, move, all和uninitialized
+
+        setDragImage: 设置拖拽出来的镜像样式和鼠标出现的位置
+            三个参数: 1.镜像的样式,也就是某一个元素
+                     2.鼠标所在的镜像的位置x坐标
+                     3.鼠标所在的镜像的位置y坐标
+
+        files:
+            获取外部拖拽的文件,返回一个fileList列表
+            fileList下有个type属性,返回文件的类型
+
+
+</pre>
+
+<ul>
+    <li draggable="true">1111</li>
+    <li draggable="true">2222</li>
+    <li draggable="true">3333</li>
+</ul>
+
+<div id="div1">
+</div>
+
+<div id="file" style="width: 1000px;height:300px;border: 1px solid #ccc;">
+拖拽外部文件
+
+</div>
+
+</body>
+</html>

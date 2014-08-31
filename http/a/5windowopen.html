@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        window.onload = function(){
+            var oBtn = document.getElementById('btn')
+            oBtn.onclick = function(){
+                // window.opener: 通过window.open方法打开当前窗口window
+                window.opener.document.body.style.background = 'grey';
+            }
+        }
+
+    </script>
+</head>
+<body>
+这是a.com下的5windowopen.html文件
+<input id="btn" value="改变父级窗口" type="button"/>
+</body>
+</html>
